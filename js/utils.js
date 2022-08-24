@@ -16,8 +16,14 @@ function determineWinner({ player, enemy, timerId }) {
         player.switchSprite('death');
     } else if(player.health > enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Samurai Bushido Wins';
+        enemy.switchSprite('death');
+        enemy.health = 0;
+        gsap.to('#enemyHealth', { width: `${enemy.health}%`});
     } else if(player.health < enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Samurai Kenji Wins';
+        player.switchSprite('death');
+        player.health = 0;
+        gsap.to('#playerHealth', { width: `${player.health}%`});
     }
 }
 
